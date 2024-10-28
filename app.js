@@ -10,7 +10,7 @@ const port = process.env.PORT || 3001;
 
 
 app.get('/', (req, res) => {
-  res.send('Hello from the server side');
+  res.status(200).json({message: 'Hello from the server', app: 'Natures tour'});
 })
 
 app.listen(port, ()=>{
