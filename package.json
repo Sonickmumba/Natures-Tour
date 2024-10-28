@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Sonickmumba/Natures-Tour/issues"
   },
-  "homepage": "https://github.com/Sonickmumba/Natures-Tour#readme"
+  "homepage": "https://github.com/Sonickmumba/Natures-Tour#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
 }
