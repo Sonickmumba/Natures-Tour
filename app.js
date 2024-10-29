@@ -10,9 +10,12 @@ const userRouter = require("./routes/userRoutes");
 const app = express();
 
 // app.use midddlewares
-app.use(morgan('tiny'));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('tiny'));
+}
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(`${__dirname}/public`));
 
 
 
