@@ -8,7 +8,6 @@ const userRouter = require("./routes/userRoutes");
 
 
 const app = express();
-const port = process.env.PORT || 3001;
 
 // app.use midddlewares
 app.use(morgan('tiny'));
@@ -27,7 +26,4 @@ app.get("/", (req, res) => {
     .json({ message: "Hello from the server", app: "Natures tour" });
 });
 
-// start server
-app.listen(port, () => {
-  console.log(`Natures app listening at ${port}`);
-});
+module.exports = app;
