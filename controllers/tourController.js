@@ -4,6 +4,17 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
 );
 
+// check id middleware
+const checkId = ('tourId', (req, res, next, val) => {
+  if (val > tours.length) {
+    return res.status(400).json({
+      status: "fail",
+      message: "Invalid Id",
+    });
+  }
+  next()
+}); 
+
 
 
 const getAllTours = (req, res) => {
@@ -34,12 +45,6 @@ const createTour = (req, res) => {
 
 const getTourById = (req, res) => {
   const tourId = parseInt(req.params.id, 10); //or use trick req.params.id * 1
-  if (tourId > tours.length) {
-    return res.status(400).json({
-      status: "fail",
-      message: "Invalid Id",
-    });
-  }
   const result = tours.find((tour) => tour.id === tourId);
   res.status(200).json({
     status: "success",
@@ -50,14 +55,6 @@ const getTourById = (req, res) => {
 };
 
 const updateTour =  (req, res) => {
-  const tourId = parseInt(req.params.id, 10);
-  if (tourId > tours.length) {
-    return res.status(400).json({
-      status: "fail",
-      message: "Invalid Id",
-    });
-  }
-
   res.status(200).json({
     status: "Success",
     data: {
@@ -77,10 +74,13 @@ const deleteTour = (req, res) => {
   });
 }
 
+
+
 module.exports = {
   deleteTour,
   updateTour,
   getAllTours,
   getTourById,
-  createTour
+  createTour,
+  checkId
 }
